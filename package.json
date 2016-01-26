@@ -6,7 +6,9 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "babel src --out-dir=dist",
-    "test": "babel-node test/**/*.js | faucet"
+    "test": "babel-node test/index.js",
+    "test:browser": "browserify -i 'react/lib/ReactContext' -i 'react/lib/ExecutionEnvironment' -t babelify test/index.js | browser-run -p 2222 | tap-spec",
+    "test:spec": "npm run test | tap-spec"
   },
   "keywords": [],
   "author": "",
@@ -16,15 +18,16 @@
     "babel-preset-react": "^6.3.13",
     "babelify": "^7.2.0",
     "blue-tape": "^0.1.11",
+    "browser-run": "^3.0.6",
     "browserify": "^13.0.0",
     "chai": "^3.4.1",
     "chai-enzyme": "^0.2.2",
     "enzyme": "^1.4.0",
     "faucet": "0.0.1",
     "jsdom": "^7.2.2",
-    "mocha": "^2.3.4",
     "react": "^0.14.6",
     "react-addons-test-utils": "^0.14.6",
-    "react-dom": "^0.14.6"
+    "react-dom": "^0.14.6",
+    "tap-spec": "^4.1.1"
   }
 }

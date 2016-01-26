@@ -1,12 +1,19 @@
 import test from 'tape'
-// import domUtil from './utils/dom'
-// import enzymeUtil from './utils/enzyme'
 import {shallow} from 'enzyme'
 import React from 'react'
 
 test("basic arithmetic", assert => {
   assert.plan(1)
   assert.equal(1 + 1, 2)
+})
+
+test("client vs server", assert => {
+  if (!process.env.npm_lifecycle_event) {
+    assert.ok(process.browser)
+  } else {
+    assert.pass('No client')
+  }
+  assert.end()
 })
 
 const Fixture = props => <div>{props.content}</div>
